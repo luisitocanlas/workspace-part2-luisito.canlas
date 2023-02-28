@@ -2,7 +2,10 @@ package com.entertainment;
 
 import java.util.Objects;
 
-public class Television {
+/*
+ * Natural order is defined by 'brand' (String)
+ */
+public class Television implements Comparable<Television> {
     // Instance Variables
     private String brand;
     private int volume;
@@ -11,11 +14,11 @@ public class Television {
     private Tuner tuner = new Tuner();  // instantiated internally
 
     // Constructors
-    public Television () {
+    public Television() {
         // no operation, default constructor
     }
 
-    public Television (String brand, int volume) {
+    public Television(String brand, int volume) {
         setBrand(brand);    // delegate to its setter
         setVolume(volume);  // delegate to its setter
     }
@@ -89,9 +92,14 @@ public class Television {
 
             // do the checks: brands are the same AND volumes are the same
             result = Objects.equals(this.getBrand(), other.getBrand()) &&   // null-safe check
-                     this.getVolume() == other.getVolume();                 // int can't be null
+                    this.getVolume() == other.getVolume();                 // int can't be null
         }
         return result;
+    }
+
+    @Override
+    public int compareTo(Television other) {
+        return this.getBrand().compareTo(other.getBrand());
     }
 
     @Override
