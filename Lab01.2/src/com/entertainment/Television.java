@@ -3,7 +3,10 @@ package com.entertainment;
 import java.util.Objects;
 
 /*
- * Natural order is defined by 'brand' (String)
+ * Natural order is defined by 'brand' (String) and volume (int) then tied on brand.
+ *
+ * To be "consistent with equals", out sort key(s) must align with what was chosen
+ * for equals() nad hashCode().
  */
 public class Television implements Comparable<Television> {
     // Instance Variables
@@ -11,7 +14,7 @@ public class Television implements Comparable<Television> {
     private int volume;
 
     // Television HAS-A Tuner, delegates all channel-related functionality to Tuner
-    private Tuner tuner = new Tuner();  // instantiated internally
+    private Tuner tuner = new Tuner();  // instantiated internally, not exposed
 
     // Constructors
     public Television() {
@@ -97,9 +100,18 @@ public class Television implements Comparable<Television> {
         return result;
     }
 
+    /*
+     * Natural order is defined by 'brand' (String) and then volume (int) when tied on brand.
+     * Since brand (String) is already Comparable, just delegate to its compareTo() method.
+     */
     @Override
     public int compareTo(Television other) {
-        return this.getBrand().compareTo(other.getBrand());
+        int result = this.getBrand().compareTo(other.getBrand());
+
+        if (result == 0) {  // tied on brand, so break the tie by volume
+            result = Integer.compare(this.getVolume(), other.getVolume());
+        }
+        return result;
     }
 
     @Override
