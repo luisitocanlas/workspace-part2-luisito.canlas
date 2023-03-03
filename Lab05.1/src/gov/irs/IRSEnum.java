@@ -11,8 +11,8 @@ package gov.irs;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public enum IRSEnum {
-    INSTANCE;
+enum IRSEnum implements IRS {
+    INSTANCE;   // calls the ctor internally
 
     // BUSINESS CODE
     private Collection<TaxPayer> payers = new ArrayList<>();
@@ -27,9 +27,9 @@ public enum IRSEnum {
         payers.add(payer);
     }
 
-
+    /*
     // constructor - just so we can see when INSTANCE is created
-    IRSEnum() {
+    private IRSEnum() {
         System.out.println("--IRSEnum ctor: the instance has been created");
     }
 
@@ -49,4 +49,5 @@ public enum IRSEnum {
     public static void touch() {
         // no-op
     }
+    */
 }
