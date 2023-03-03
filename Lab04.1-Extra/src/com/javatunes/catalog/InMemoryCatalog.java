@@ -9,6 +9,7 @@
 package com.javatunes.catalog;
 
 import java.util.*;
+import java.sql.Date;
 
 // OF COURSE THIS CLASS DOESN'T COMPILE
 // Your first job is to fulfill the contract that this class has signed.
@@ -169,6 +170,7 @@ public class InMemoryCatalog implements Catalog {
 
     /**
      * TASK: find the cheapest item with the specified genre (MusicCategory).
+     * TODO: If there are more than one cheapest, return a list
      */
     public MusicItem cheapItem(MusicCategory category) {
         List<MusicItem> items = new ArrayList<>();              // create an empty array
@@ -258,10 +260,10 @@ public class InMemoryCatalog implements Catalog {
      */
     public Collection<MusicItem> getTheFollowing(double price){
         Collection<MusicItem> items = new ArrayList<>();
-        Date before = new Date();
 
         for (MusicItem item : catalogData) {
-            if ( (item.getPrice() <= price) && (item.getReleaseDate().before(before)) ) {
+            if ( (item.getPrice() <= price) && item.getReleaseDate().after(Date.valueOf("1979-12-31")) &&
+                    item.getReleaseDate().before(Date.valueOf("1990-01-01")) ) {
                 items.add(item);
             }
         }

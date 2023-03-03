@@ -6,7 +6,7 @@
  * Copyright LearningPatterns Inc.
  */
 
-package com.javatunes.catalog.test;
+package com.javatunes.catalog;
 
 import com.javatunes.catalog.Catalog;
 import com.javatunes.catalog.InMemoryCatalog;
@@ -16,7 +16,7 @@ import com.javatunes.catalog.MusicItem;
 import java.util.Collection;
 import java.util.Collections;
 
-class InMemoryCatalogTest {
+class InMemoryCatalogTestMain {
 
     /*
      * One by one, complete each test method below, and then "activate" it by
@@ -41,13 +41,15 @@ class InMemoryCatalogTest {
         // testIsAtLeast();
         // testIsGenreAvailable();
         // testGetPopTitles();
-        testGetTheFollowing();
+        // testGetTheFollowing();
     }
 
     private static void testGetTheFollowing() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
-        System.out.println(catalog.getTheFollowing(15.00));
+        for (MusicItem item : catalog.getTheFollowing(15.00)) {
+            System.out.println(item);
+        }
     }
 
     private static void testGetPopTitles() {
