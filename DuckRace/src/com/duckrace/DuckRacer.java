@@ -49,7 +49,7 @@ class DuckRacer {
     // toString()
     @Override
     public String toString() {
-        return String.format("%s: id=%-2s, name=%-6s, wins=%-2s, rewards=%s",
+        return String.format("%s: id=%-2s, name=%-7s, wins=%-2s, rewards=%s",
                 getClass().getSimpleName(), getId(), getName(), getWins(), getRewards());
     }
 }
