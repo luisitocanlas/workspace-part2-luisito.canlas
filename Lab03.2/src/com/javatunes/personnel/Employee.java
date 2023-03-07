@@ -14,8 +14,7 @@ import java.util.Objects;
 import gov.irs.NamedEntity;
 import gov.irs.TaxPayer;
 
-public abstract class Employee
-        implements TaxPayer, NamedEntity {
+public abstract class Employee implements TaxPayer, NamedEntity {
     private String name;
     private Date hireDate;
 
